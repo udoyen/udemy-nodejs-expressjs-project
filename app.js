@@ -11,6 +11,8 @@ const defaultRoute = require('./routes/shop');
 
 // Register a parser
 app.use(bodyParser.urlencoded({extended: false}));
+// Grant access to the public folder 
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/admin', adminRoutes);
 
