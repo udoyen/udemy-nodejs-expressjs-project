@@ -19,7 +19,7 @@ app.set('views', 'views');
 
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
-const errorController = require('./controller/404Controller');
+const errorController = require('./controller/error');
 
 // Register a parser
 app.use(bodyParser.urlencoded({extended: false}));
