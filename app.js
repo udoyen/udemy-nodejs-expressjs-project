@@ -13,13 +13,16 @@ const app = express();
 //      extname: 'hbs'
 //     }));
 
+
 // Set global configuration value
 app.set('view engine',  'ejs');
 app.set('views', 'views');
 
+const errorController = require('./controller/error');
+
 const adminRoutes = require('./routes/admin');
 const shopRoutes = require('./routes/shop');
-const errorController = require('./controller/error');
+const cartRoutes = require('./routes/cart');
 
 // Register a parser
 app.use(bodyParser.urlencoded({extended: false}));
@@ -27,8 +30,8 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/admin', adminRoutes);
-
 app.use(shopRoutes);
+app.use(cartRoutes);
 
 // Used to add middleware
 // next is a function

@@ -1,1 +1,44 @@
-[{"title":"book"},{"title":"ginger"},{"title":"ginger"},{"title":"New Framework"},{"title":"koko"},{"title":"david"},{"title":"Linux command to append some text in first row{ 1 row 5 column} of excel file (and first rows data should be move to next row accordingly )"},{"title":"presely"},{"title":"presely"}]
+[
+  {
+    "title": "book",
+    "imageUrl": "https://cdn.pixabay.com/photo/2016/11/29/07/22/bible-1868070__480.jpg",
+    "description": "A very good book to read.",
+    "price": "22"
+  },
+  {
+    "title": "koko",
+    "imageUrl": "https://cdn.pixabay.com/photo/2016/11/29/07/22/bible-1868070__480.jpg",
+    "description": "A great read for all users.",
+    "price": "56"
+  },
+  {
+    "title": "ginger",
+    "imageUrl": "https://cdn.pixabay.com/photo/2016/11/29/07/22/bible-1868070__480.jpg",
+    "description": "A good read.",
+    "price": "41"
+  },
+  {
+    "title": "presely",
+    "imageUrl": "https://cdn.pixabay.com/photo/2016/11/29/07/22/bible-1868070__480.jpg",
+    "description": "A good book again.",
+    "price": "1.27"
+  },
+  {
+    "title": "david",
+    "imageUrl": "https://cdn.pixabay.com/photo/2016/11/29/07/22/bible-1868070__480.jpg",
+    "description": "Again",
+    "price": "14"
+  },
+  {
+    "title": "Man",
+    "imageUrl": "https://cdn.pixabay.com/photo/2016/11/29/07/22/bible-1868070__480.jpg",
+    "description": "From Chrome browser.",
+    "price": "23.45"
+  },
+  {
+    "title": "New Framework",
+    "imageUrl": "https://cdn.pixabay.com/photo/2016/11/29/07/22/bible-1868070__480.jpg",
+    "description": "A good taste.",
+    "price": "12.56"
+  }
+]
