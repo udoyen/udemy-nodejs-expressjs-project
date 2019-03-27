@@ -1,5 +1,4 @@
 const Product = require("../models/product");
-const reloadify = require('../utils/reloadify.js');
 
 exports.getProducts = (req, res, next) => {
   Product.fetchAll(products => {
@@ -29,13 +28,12 @@ exports.getCart = (req, res, next) => {
 
 };
 
-exports.getIndex = (req, res, nexr) => {
+exports.getIndex = (req, res, next) => {
   Product.fetchAll(products => {
     res.render("shop/index", {
       prods: products,
       pageTitle: "Shop",
-      path: "/",
-      sc: reloadify.watchScript
+      path: "/"
     });
   });
 };
