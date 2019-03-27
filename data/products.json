@@ -2,43 +2,29 @@
   {
     "title": "book",
     "imageUrl": "https://cdn.pixabay.com/photo/2016/11/29/07/22/bible-1868070__480.jpg",
-    "description": "A very good book to read.",
-    "price": "22"
-  },
-  {
-    "title": "koko",
-    "imageUrl": "https://cdn.pixabay.com/photo/2016/11/29/07/22/bible-1868070__480.jpg",
-    "description": "A great read for all users.",
-    "price": "56"
+    "description": "A good book.",
+    "price": "12.78",
+    "id": "0.13344400422718317"
   },
   {
     "title": "ginger",
     "imageUrl": "https://cdn.pixabay.com/photo/2016/11/29/07/22/bible-1868070__480.jpg",
-    "description": "A good read.",
-    "price": "41"
+    "description": "A very good product.",
+    "price": "12.34",
+    "id": "0.489009900801485"
   },
   {
-    "title": "presely",
+    "title": "book",
     "imageUrl": "https://cdn.pixabay.com/photo/2016/11/29/07/22/bible-1868070__480.jpg",
-    "description": "A good book again.",
-    "price": "1.27"
+    "description": "A third good product.",
+    "price": "45.23",
+    "id": "0.2193943629805093"
   },
   {
-    "title": "david",
+    "title": "",
     "imageUrl": "https://cdn.pixabay.com/photo/2016/11/29/07/22/bible-1868070__480.jpg",
-    "description": "Again",
-    "price": "14"
-  },
-  {
-    "title": "Man",
-    "imageUrl": "https://cdn.pixabay.com/photo/2016/11/29/07/22/bible-1868070__480.jpg",
-    "description": "From Chrome browser.",
-    "price": "23.45"
-  },
-  {
-    "title": "New Framework",
-    "imageUrl": "https://cdn.pixabay.com/photo/2016/11/29/07/22/bible-1868070__480.jpg",
-    "description": "A good taste.",
-    "price": "12.56"
+    "description": "A great book to have on the weekend.",
+    "price": "10.25",
+    "id": "0.2916471064452173"
   }
 ]
