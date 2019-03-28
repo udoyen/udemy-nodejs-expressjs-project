@@ -16,7 +16,8 @@
   "devDependencies": {
     "browser-sync": "^2.26.3",
     "gulp": "^4.0.0",
-    "nodemon": "^1.18.10"
+    "nodemon": "^1.18.10",
+    "reload": "^2.4.0"
   },
   "dependencies": {
     "body-parser": "^1.18.3",
