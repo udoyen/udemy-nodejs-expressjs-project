@@ -8,7 +8,6 @@ const p = path.join(
 );
 
 module.exports = class Cart {
-  
   static addProduct(id, productPrice) {
     // Fetch the previous cart
     fs.readFile(p, (err, fileContents) => {
@@ -52,7 +51,8 @@ module.exports = class Cart {
         prod => prod.id !== id
       );
       updatedCart.totalPrice =
-        updatedCart.totalPrice - productPrice * productQty;
+        updatedCart.totalPrice.toFixed(2) -
+        productPrice.toFixed(2) * productQty;
 
       fs.writeFile(p, JSON.stringify(updatedCart), err => {
         console.log(err);

@@ -8,6 +8,7 @@ const fs = require("fs");
 const path = require("path");
 const rootDir = require("../utils/path");
 const Cart = require('./cart');
+const uuidv4 = require('uuid/v4');
 // create a path to the storage
 // file
 const p = path.join(rootDir, "data", "products.json");
@@ -44,7 +45,7 @@ module.exports = class Product {
           console.log(err);
         });
       } else {
-        this.id = Math.random().toString();
+        this.id = uuidv4();
         products.push(this);
         fs.writeFile(p, JSON.stringify(products), err => {
           console.log(err);
@@ -53,18 +54,16 @@ module.exports = class Product {
     });
   }
 
-  static deleteById(id, cb) {
+  static deleteById(id) {
     getProductsFromFile(products => {
       const product = products.find(prod => prod.id === id);
       const updatedProducts = products.filter(prod => prod.id !== id);
       fs.writeFile(p, JSON.stringify(updatedProducts), err => {
-        if (!err) {
+        if (!err && product) {
           Cart.deleteProduct(id, product.price);
         }
       });
     });
-
-    cb();
   }
 
   static fetchAll(cb) {

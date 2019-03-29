@@ -17,9 +17,11 @@
     "browser-sync": "^2.26.3",
     "gulp": "^4.0.0",
     "nodemon": "^1.18.10",
-    "reload": "^2.4.0"
+    "reload": "^2.4.0",
+    "uuid": "^3.3.2"
   },
   "dependencies": {
+    "@types/uuid": "^3.4.4",
     "body-parser": "^1.18.3",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
