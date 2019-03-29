@@ -1,1 +1,7 @@
-{"products":[{"id":"14fa4a19-13af-4fe9-80d4-2f844f1675a2","qty":1}],"totalPrice":112.6}
+{
+  "products": [
+    { "id": "14fa4a19-13af-4fe9-80d4-2f844f1675a2", "qty": 2 },
+    { "id": "aad7c6bf-824e-4160-97ba-1e1d67c50b47", "qty": 1 }
+  ],
+  "totalPrice": 237.72
+}
