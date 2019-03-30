@@ -1,0 +1,16 @@
+[
+  {
+    "id": "aad7c6bf-824e-4160-97ba-1e1d67c50b47",
+    "title": "book",
+    "imageUrl": "https://cdn.pixabay.com/photo/2016/11/29/07/22/bible-1868070__480.jpg",
+    "description": "A good example.",
+    "price": "12.52"
+  },
+  {
+    "id": "14fa4a19-13af-4fe9-80d4-2f844f1675a2",
+    "title": "ginger",
+    "imageUrl": "https://cdn.pixabay.com/photo/2016/11/29/07/22/bible-1868070__480.jpg",
+    "description": "A good alternative.",
+    "price": "112.60"
+  }
+]
