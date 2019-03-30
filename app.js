@@ -1,9 +1,9 @@
-const path = require('path');
+const path = require("path");
 
-const express = require('express');
-const bodyParser = require('body-parser');
+const express = require("express");
+const bodyParser = require("body-parser");
 // const expressHbs = require('express-handlebars');
-
+const db = require("./utils/database");
 
 const app = express();
 
@@ -14,23 +14,22 @@ const app = express();
 //      extname: 'hbs'
 //     }));
 
-
 // Set global configuration value
-app.set('view engine',  'ejs');
-app.set('views', 'views');
+app.set("view engine", "ejs");
+app.set("views", "views");
 
-const errorController = require('./controller/error');
+const errorController = require("./controller/error");
 
-const adminRoutes = require('./routes/admin');
-const shopRoutes = require('./routes/shop');
-const cartRoutes = require('./routes/cart');
+const adminRoutes = require("./routes/admin");
+const shopRoutes = require("./routes/shop");
+const cartRoutes = require("./routes/cart");
 
 // Register a parser
-app.use(bodyParser.urlencoded({extended: false}));
-// Grant access to the public folder 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.urlencoded({ extended: false }));
+// Grant access to the public folder
+app.use(express.static(path.join(__dirname, "public")));
 
-app.use('/admin', adminRoutes);
+app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 app.use(cartRoutes);
 
@@ -44,7 +43,7 @@ app.use(cartRoutes);
 
 // app.use('/', (req, res, next) => {
 //     console.log('In first middleware');
-//     next();    
+//     next();
 
 // })
 
