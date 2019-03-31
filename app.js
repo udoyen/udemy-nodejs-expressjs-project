@@ -4,6 +4,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 // const expressHbs = require('express-handlebars');
 const sequelize = require("./utils/database");
+const Product = require("./models/product");
+const User = require("./models/user");
 
 const app = express();
 
@@ -29,6 +31,17 @@ app.use(bodyParser.urlencoded({ extended: false }));
 // Grant access to the public folder
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use((req, res, next) => {
+  User.findByPk(1)
+    .then(user => {
+      req.user = user;
+      next();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
+
 app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 app.use(cartRoutes);
@@ -50,9 +63,26 @@ app.use(cartRoutes);
 // Catch all middleware
 app.use(errorController.getErrorPage);
 
+Product.belongsTo(User, {
+  constraints: true,
+  onDelete: "CASCADE"
+});
+User.hasMany(Product);
+
 sequelize
+  // .sync({force: true})
   .sync()
   .then(result => {
+    return User.findByPk(1);
+  })
+  .then(user => {
+    if (!user) {
+      return User.create({ id: 1, name: "George", email: "g@gmail.com" });
+    }
+    return user;
+  })
+  .then(user => {
+    console.log(user);
     app.listen(3000);
   })
   .catch(err => {
