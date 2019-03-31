@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "gulp": "gulp"
   },
   "keywords": [
     "udemy",
@@ -27,6 +28,7 @@
     "express": "^4.16.4",
     "express-handlebars": "^3.0.2",
     "mysql2": "^1.6.5",
-    "pug": "^2.0.3"
+    "pug": "^2.0.3",
+    "sequelize": "^5.2.7"
   }
 }

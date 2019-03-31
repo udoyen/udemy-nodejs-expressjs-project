@@ -3,7 +3,7 @@ const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 // const expressHbs = require('express-handlebars');
-const db = require("./utils/database");
+const sequelize = require("./utils/database");
 
 const app = express();
 
@@ -50,4 +50,11 @@ app.use(cartRoutes);
 // Catch all middleware
 app.use(errorController.getErrorPage);
 
-app.listen(3000);
+sequelize
+  .sync()
+  .then(result => {
+    app.listen(3000);
+  })
+  .catch(err => {
+    console.log(err);
+  });
