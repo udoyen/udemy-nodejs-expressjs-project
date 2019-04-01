@@ -199,6 +199,16 @@ form {
   cursor: pointer;
 }
 
+.btn.danger {
+  color: red;
+  border-color: red;
+}
+
+.btn.danger:hover {
+  background: red;
+  color: white;
+}
+
 .btn:hover,
 .btn:active {
   background-color: #00695c;
