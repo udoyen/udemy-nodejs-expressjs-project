@@ -6,6 +6,8 @@ const bodyParser = require("body-parser");
 const sequelize = require("./utils/database");
 const Product = require("./models/product");
 const User = require("./models/user");
+const Cart = require('./models/cart');
+const CartItem = require('./models/cart-item');
 
 const app = express();
 
@@ -68,16 +70,20 @@ Product.belongsTo(User, {
   onDelete: "CASCADE"
 });
 User.hasMany(Product);
+User.hasOne(Cart);
+Cart.belongsTo(User);
+Cart.belongsToMany(Product, {through: CartItem});
+Product.belongsToMany(Cart, {through: CartItem});
 
 sequelize
-  // .sync({force: true})
-  .sync()
+  .sync({force: true})
+  // .sync()
   .then(result => {
     return User.findByPk(1);
   })
   .then(user => {
     if (!user) {
-      return User.create({ id: 1, name: "George", email: "g@gmail.com" });
+      return User.create({ name: "George", email: "g@gmail.com" });
     }
     return user;
   })
