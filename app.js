@@ -13,7 +13,7 @@ app.set("views", "views");
 const errorController = require("./controller/error");
 
 const adminRoutes = require("./routes/admin");
-// const shopRoutes = require("./routes/shop");
+const shopRoutes = require("./routes/shop");
 // const cartRoutes = require("./routes/cart");
 
 // Register a parser
@@ -34,7 +34,7 @@ app.use((req, res, next) => {
 });
 
 app.use("/admin", adminRoutes);
-// app.use(shopRoutes);
+app.use(shopRoutes);
 // app.use(cartRoutes);
 
 
