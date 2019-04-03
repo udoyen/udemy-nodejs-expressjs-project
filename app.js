@@ -2,7 +2,8 @@ const path = require("path");
 
 const express = require("express");
 const bodyParser = require("body-parser");
-const mongoConnect = require('./utils/database').mongoConnect;
+const mongoConnect = require("./utils/database").mongoConnect;
+const User = require("./models/user");
 
 const app = express();
 
@@ -22,26 +23,24 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use((req, res, next) => {
-  // User.findByPk(1)
-  //   .then(user => {
-  //     req.user = user;
-  //     next();
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   });
-  next();
+  User.findById("5ca48f50f1021d6ee52ce412")
+    .then(user => {
+      req.user = user;
+      console.log(req.user._id);
+      next();
+    })
+    .catch(err => {
+      console.log(err);
+    });
 });
 
 app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 // app.use(cartRoutes);
 
-
 // Catch all middleware
 app.use(errorController.getErrorPage);
 
-mongoConnect(() =>{
+mongoConnect(() => {
   app.listen(3000);
 });
-
