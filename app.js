@@ -15,7 +15,7 @@ const errorController = require("./controller/error");
 
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
-// const cartRoutes = require("./routes/cart");
+const cartRoutes = require("./routes/cart");
 
 // Register a parser
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -25,8 +25,7 @@ app.use(express.static(path.join(__dirname, "public")));
 app.use((req, res, next) => {
   User.findById("5ca48f50f1021d6ee52ce412")
     .then(user => {
-      req.user = user;
-      console.log(req.user._id);
+      req.user = new User(user.name, user.email, user.cart, user._id);
       next();
     })
     .catch(err => {
@@ -36,7 +35,7 @@ app.use((req, res, next) => {
 
 app.use("/admin", adminRoutes);
 app.use(shopRoutes);
-// app.use(cartRoutes);
+app.use(cartRoutes);
 
 // Catch all middleware
 app.use(errorController.getErrorPage);
