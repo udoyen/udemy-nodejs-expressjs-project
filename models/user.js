@@ -34,9 +34,6 @@ class User {
     const updatedCart = {
       items: updatedCartItems
     };
-    // const updatedCart = {
-    //   items: [{ productId: new ObjectId(product._id), quantity: 1 }]
-    // };
     const db = getDb();
     return db
       .collection("users")
@@ -76,7 +73,7 @@ class User {
       .collection("users")
       .updateOne(
         { _id: new ObjectId(this._id) },
-        { $set: { items: updatedCartItems } }
+        { $set: { cart: { items: updatedCartItems } } }
       );
   }
 
