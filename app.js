@@ -42,4 +42,5 @@ app.use(errorController.getErrorPage);
 
 mongoConnect(() => {
   app.listen(3000);
-});
+})
+

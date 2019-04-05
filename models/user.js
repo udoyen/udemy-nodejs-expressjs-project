@@ -16,6 +16,10 @@ class User {
     return db.collection("users").insertOne(this);
   }
 
+  /**
+   * 
+   * @param {Object} product 
+   */
   addToCart(product) {
     const cartProductIndex = this.cart.items.findIndex(cp => {
       return cp.productId.toString() === product._id.toString();
@@ -45,6 +49,7 @@ class User {
 
   getCart() {
     const db = getDb();
+    let cIds = [];
     const productIds = this.cart.items.map(i => {
       return i.productId;
     });
@@ -52,6 +57,18 @@ class User {
       .collection("products")
       .find({ _id: { $in: productIds } })
       .toArray()
+      .then(result => {
+        if (result.length !== productIds.length) {
+          result.forEach(element => {
+            productIds.forEach(l => {
+              if (element._id.toString() !== l.toString()) this.deleteItemFromCart(l);
+            })
+          });
+
+        }
+        return result;
+
+      })
       .then(products => {
         return products.map(p => {
           return {
