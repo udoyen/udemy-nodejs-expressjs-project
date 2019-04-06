@@ -1,4 +1,5 @@
 const Product = require("../models/product");
+const Order = require('../models/order');
 
 exports.getProducts = (req, res, next) => {
   Product.find()
@@ -97,9 +98,29 @@ exports.getCheckout = (req, res, next) => {
 
 exports.postOrder = (req, res, next) => {
   req.user
-    .addOrder()
+    .populate('cart.items.productId')
+    .execPopulate()
+    .then(user => {
+      const products = user.cart.items.map(i => {
+        return { quantity: i.quantity, product: { ...i.productId._doc } };//this helps to pull out all data fron the product object
+      });
+      const order = new Order({
+        user: {
+          name: req.user.name,
+          email: req.user.email,
+          userId: req.user // mongoose will pick the userId from the user object
+        },
+        products: products
+      });
+      return order.save();// New order collection is created here
+
+    })
     .then(result => {
+      req.user.clearCart();
+    })
+    .then(() => {
       res.redirect("/orders");
+
     })
     .catch(err => console.log(err));
 };
