@@ -2,7 +2,7 @@ const path = require("path");
 
 const express = require("express");
 const bodyParser = require("body-parser");
-const mongoConnect = require("./utils/database").mongoConnect;
+const mongoose = require('mongoose');
 const User = require("./models/user");
 
 const app = express();
@@ -23,9 +23,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use((req, res, next) => {
-  User.findById("5ca48f50f1021d6ee52ce412")
+  User.findById("5ca795ae329d5d22945c662a")
     .then(user => {
-      req.user = new User(user.name, user.email, user.cart, user._id);
+      req.user = user;
       next();
     })
     .catch(err => {
@@ -40,7 +40,23 @@ app.use(cartRoutes);
 // Catch all middleware
 app.use(errorController.getErrorPage);
 
-mongoConnect(() => {
-  app.listen(3000);
-})
+mongoose.connect('mongodb+srv://george:udemy_321@udemycluster-bb3gw.mongodb.net/shop?retryWrites=true')
+  .then(result => {
+    User.findOne().then(user => {
+      if (!user) {
+        const user = new User({
+          name: 'George Udosen',
+          email: 'george@gmail.com',
+          cart: {
+            items: []
+          }
+        });
+        user.save();
+      }
+    })
+    app.listen(3000);
+  })
+  .catch(err => {
+    console.log(err);
+  });
 
