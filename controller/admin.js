@@ -101,12 +101,12 @@ exports.postDeleteProduct = (req, res, next) => {
   Product.findByIdAndRemove(prodId)
     .then(() => {
       console.log("DESTROYED PRODUCT!");
+      res.redirect("/admin/products");
 
     })
-    .then(() => {
-      req.user.removeFromCart(prodId);
-      res.redirect("/admin/products");
-    })
+    // .then(() => {
+    //   req.user.removeFromCart(prodId);
+    // })
     .catch(err => {
       console.log(err);
     });
