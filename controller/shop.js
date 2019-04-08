@@ -32,11 +32,13 @@ exports.getProduct = (req, res, next) => {
 };
 
 exports.getCart = (req, res, next) => {
+  let updatedCartItems = [{ product: {}, quantity: '' }];
+  const newCart = [];
   req.user
     .populate('cart.items.productId')
     .execPopulate()//this returns a promise
     .then(user => {
-      // console.log(user.cart.items);
+      console.log(user.cart.items);
       const products = user.cart.items;
       res.render("shop/cart", {
         path: "/cart",
