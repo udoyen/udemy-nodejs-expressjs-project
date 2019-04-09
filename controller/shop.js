@@ -36,12 +36,10 @@ exports.getCart = (req, res, next) => {
     .populate('cart.items.productId')
     .execPopulate()//this returns a promise
     .then(user => {
-      // console.log("user " + user);
       var d = [...user.cart.items];
       const products = d.filter(a => {
         return a.productId !== null;
       });
-      console.log(products);
       user.cart.items = products;
       user.save()
       res.render("shop/cart", {
