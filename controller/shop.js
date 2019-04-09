@@ -41,7 +41,7 @@ exports.getCart = (req, res, next) => {
         return a.productId !== null;
       });
       user.cart.items = products;
-      user.save()
+      user.save() // update user cart
       res.render("shop/cart", {
         path: "/cart",
         pageTitle: "Your Cart",
