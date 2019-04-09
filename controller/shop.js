@@ -43,6 +43,7 @@ exports.getCart = (req, res, next) => {
       });
       console.log(products);
       user.cart.items = products;
+      user.save()
       res.render("shop/cart", {
         path: "/cart",
         pageTitle: "Your Cart",
