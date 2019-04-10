@@ -11,11 +11,12 @@ const app = express();
 app.set("view engine", "ejs");
 app.set("views", "views");
 
-const errorController = require("./controller/error");
+const errorController = require("./controllers/error");
 
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 const cartRoutes = require("./routes/cart");
+const authRoutes = require("./routes/auth");
 
 // Register a parser
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -36,6 +37,7 @@ app.use((req, res, next) => {
 app.use("/admin", adminRoutes);
 app.use(shopRoutes);
 app.use(cartRoutes);
+app.use(authRoutes);
 
 // Catch all middleware
 app.use(errorController.getErrorPage);
