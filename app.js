@@ -13,7 +13,6 @@ const store = new MongoDBStore({
   uri: MONGODB_URI,
   collection: 'sessions'
 
-
 });
 // Set global configuration value
 app.set("view engine", "ejs");
@@ -39,16 +38,16 @@ app.use(
   })
 );
 
-app.use((req, res, next) => {
-  User.findById("5ca795ae329d5d22945c662a")
-    .then(user => {
-      req.user = user;
-      next();
-    })
-    .catch(err => {
-      console.log(err);
-    });
-});
+// app.use((req, res, next) => {
+//   User.findById("5ca795ae329d5d22945c662a")
+//     .then(user => {
+//       req.session.userData = user;
+//       next();
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     });
+// });
 
 app.use("/admin", adminRoutes);
 app.use(shopRoutes);
