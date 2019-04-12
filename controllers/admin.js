@@ -21,7 +21,7 @@ exports.postAddProduct = (req, res, next) => {
       price: price,
       description: description,
       imageUrl: imageUrl,
-      userId: req.session.user // picks only the user id and could have been written as "req.user._id"
+      userId: req.user // picks only the user id and could have been written as "req.user._id"
     }
   );
   product
@@ -106,9 +106,6 @@ exports.postDeleteProduct = (req, res, next) => {
       res.redirect("/admin/products");
 
     })
-    // .then(() => {
-    //   req.user.removeFromCart(prodId);
-    // })
     .catch(err => {
       console.log(err);
     });

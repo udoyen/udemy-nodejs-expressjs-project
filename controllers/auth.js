@@ -10,15 +10,17 @@ exports.getLogin = (req, res, next) => {
 
 exports.postLogin = (req, res, next) => {
     // set a header 
-    User.findById("5ca795ae329d5d22945c662a")
+    User.findById('5ca795ae329d5d22945c662a')
         .then(user => {
             req.session.isLoggedIn = true;
             req.session.user = user;
-            res.redirect('/');
+            console.log(user);
+            req.session.save(err => {
+                console.log(err);
+                res.redirect('/');
+            });
         })
-        .catch(err => {
-            console.log(err);
-        });
+        .catch(err => console.log(err));
 };
 
 exports.postLogout = (req, res, next) => {

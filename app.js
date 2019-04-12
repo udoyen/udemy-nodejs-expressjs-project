@@ -6,8 +6,8 @@ const mongoose = require('mongoose');
 const User = require("./models/user");
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
-const MONGODB_URI = 
-        'mongodb+srv://george:udemy_321@udemycluster-bb3gw.mongodb.net/shop';
+const MONGODB_URI =
+  'mongodb+srv://george:udemy_321@udemycluster-bb3gw.mongodb.net/shop';
 const app = express();
 const store = new MongoDBStore({
   uri: MONGODB_URI,
@@ -38,16 +38,19 @@ app.use(
   })
 );
 
-// app.use((req, res, next) => {
-//   User.findById("5ca795ae329d5d22945c662a")
-//     .then(user => {
-//       req.session.userData = user;
-//       next();
-//     })
-//     .catch(err => {
-//       console.log(err);
-//     });
-// });
+app.use((req, res, next) => {
+  if (!req.session.user) {
+    return next();
+  }
+  User.findById(req.session.user._id)
+    .then(user => {
+      req.user = user;
+      next();
+    })
+    .catch(err => {
+      console.log(err);
+    });
+});
 
 app.use("/admin", adminRoutes);
 app.use(shopRoutes);
@@ -58,8 +61,8 @@ app.use(authRoutes);
 app.use(errorController.getErrorPage);
 
 mongoose
-        .connect(MONGODB_URI)
-    .then(result => {
+  .connect(MONGODB_URI)
+  .then(result => {
     User.findOne().then(user => {
       if (!user) {
         const user = new User({
