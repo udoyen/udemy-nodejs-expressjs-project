@@ -15,9 +15,9 @@
   "author": "george udosen",
   "license": "ISC",
   "devDependencies": {
-    "browser-sync": "^2.26.3",
-    "gulp": "^4.0.0",
-    "nodemon": "^1.18.10",
+    "browser-sync": "^2.26.5",
+    "gulp": "^4.0.1",
+    "nodemon": "^1.18.11",
     "reload": "^2.4.0",
     "uuid": "^3.3.2"
   },
@@ -27,15 +27,15 @@
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
     "connect-mongodb-session": "^2.1.1",
-    "csurf": "^1.9.0",
+    "csurf": "^1.10.0",
     "ejs": "^2.6.1",
     "express": "^4.16.4",
     "express-handlebars": "^3.0.2",
-    "express-session": "^1.15.6",
-    "mongodb": "^3.2.2",
-    "mongoose": "^5.4.22",
+    "express-session": "^1.16.1",
+    "mongodb": "^3.2.3",
+    "mongoose": "^5.5.3",
     "mysql2": "^1.6.5",
     "pug": "^2.0.3",
-    "sequelize": "^5.2.7"
+    "sequelize": "^5.7.5"
   }
 }
