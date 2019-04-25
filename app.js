@@ -3,9 +3,11 @@ const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require('mongoose');
-const User = require("./models/user");
 const session = require('express-session');
 const MongoDBStore = require('connect-mongodb-session')(session);
+const csurf = require('csurf');
+const csrfProtection = csurf();
+const User = require("./models/user");
 const MONGODB_URI =
   'mongodb+srv://george:udemy_321@udemycluster-bb3gw.mongodb.net/shop';
 const app = express();
@@ -18,14 +20,13 @@ const store = new MongoDBStore({
 app.set("view engine", "ejs");
 app.set("views", "views");
 
+// Register a parser
 const errorController = require("./controllers/error");
 
 const adminRoutes = require("./routes/admin");
 const shopRoutes = require("./routes/shop");
 const cartRoutes = require("./routes/cart");
 const authRoutes = require("./routes/auth");
-
-// Register a parser
 app.use(bodyParser.urlencoded({ extended: false }));
 // Grant access to the public folder
 app.use(express.static(path.join(__dirname, "public")));
@@ -37,6 +38,7 @@ app.use(
     store: store
   })
 );
+app.use(csrfProtection);
 
 app.use((req, res, next) => {
   if (!req.session.user) {
@@ -52,9 +54,16 @@ app.use((req, res, next) => {
     });
 });
 
+
+app.use((req, res, next) => {
+  res.locals.isAuthenticated = req.session.isLoggedIn;
+  res.locals.csrfToken = req.csrfToken();
+  next();
+});
+
 app.use("/admin", adminRoutes);
-app.use(shopRoutes);
 app.use(cartRoutes);
+app.use(shopRoutes);
 app.use(authRoutes);
 
 // Catch all middleware
