@@ -71,29 +71,35 @@ exports.postSignup = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
     const confirmPassword = req.body.confirmPassword;
+    if (email) {
+        User.findOne({ email: email })
+            .then(userDoc => {
+                if (userDoc) {
+                    req.flash('error', 'Error Signing Up, E-Mail exists already!');
+                    return res.redirect('/signup');
+                }
+                return bcrypt.hash(password, 12)
+                    .then(hashPassword => {
+                        const user = new User({
+                            email: email,
+                            password: hashPassword,
+                            cart: { items: [] }
+                        });
+                        return user.save();
+                    })
+                    .then(result => {
+                        res.redirect('/login');
+                    })
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    } else {
 
-    User.findOne({ email: email })
-        .then(userDoc => {
-            if (userDoc) {
-                req.flash('error', 'Error Signing Up, E-Mail exists already!');
-                return res.redirect('/signup');
-            }
-            return bcrypt.hash(password, 12)
-                .then(hashPassword => {
-                    const user = new User({
-                        email: email,
-                        password: hashPassword,
-                        cart: { items: [] }
-                    });
-                    return user.save();
-                })
-                .then(result => {
-                    res.redirect('/login');
-                })
-        })
-        .catch(err => {
-            console.log(err);
-        });
+        req.flash('error', 'E-Mail field is empty!');
+        res.redirect('/signup');
+    }
+
 };
 
 
