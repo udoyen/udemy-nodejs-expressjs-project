@@ -62,8 +62,8 @@ app.use((req, res, next) => {
 });
 
 app.use("/admin", adminRoutes);
-app.use(cartRoutes);
 app.use(shopRoutes);
+app.use(cartRoutes);
 app.use(authRoutes);
 
 // Catch all middleware
