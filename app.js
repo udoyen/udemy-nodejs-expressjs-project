@@ -8,6 +8,7 @@ const MongoDBStore = require('connect-mongodb-session')(session);
 const csurf = require('csurf');
 const csrfProtection = csurf();
 const flash = require('connect-flash');
+
 const User = require("./models/user");
 const MONGODB_URI =
   'mongodb+srv://george:udemy_321@udemycluster-bb3gw.mongodb.net/shop';
