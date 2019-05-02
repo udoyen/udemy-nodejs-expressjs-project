@@ -4,4 +4,4 @@ data/*
 data/cart.json
 data/projects.json
 credentials
-./grid_Keys.js
+grid_keys.js
