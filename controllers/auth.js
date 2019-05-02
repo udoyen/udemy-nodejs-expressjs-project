@@ -3,7 +3,7 @@ const crypto = require('crypto');
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
 const { validationResult } = require('express-validator/check');
-const gkey = require('../grid_Keys');
+const gkey = require('../grid_keys');
 const User = require("../models/user");
 
 const transporter = nodemailer.createTransport(sendgridTransport({
