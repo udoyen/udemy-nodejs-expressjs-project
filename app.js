@@ -10,8 +10,10 @@ const csrfProtection = csurf();
 const flash = require('connect-flash');
 
 const User = require("./models/user");
+// const MONGODB_URI =
+  // 'mongodb+srv://george:udemy_321@udemycluster-bb3gw.mongodb.net/shop';
 const MONGODB_URI =
-  'mongodb+srv://george:udemy_321@udemycluster-bb3gw.mongodb.net/shop';
+  'mongodb://@localhost:27017/shop';
 const app = express();
 const store = new MongoDBStore({
   uri: MONGODB_URI,
