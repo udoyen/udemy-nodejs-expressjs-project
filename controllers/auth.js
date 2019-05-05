@@ -1,9 +1,9 @@
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
+const gkey = require('../grid_keys');
 const nodemailer = require('nodemailer');
 const sendgridTransport = require('nodemailer-sendgrid-transport');
 const { validationResult } = require('express-validator/check');
-const gkey = require('../grid_keys');
 const User = require("../models/user");
 
 const transporter = nodemailer.createTransport(sendgridTransport({
@@ -46,6 +46,15 @@ exports.getSignup = (req, res, next) => {
 exports.postLogin = (req, res, next) => {
     const email = req.body.email;
     const password = req.body.password;
+
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+        return res.render('auth/login', {
+            path: '/login',
+            pageTitle: 'Login',
+            errorMessage: errors.array()[0].msg
+        });
+    }
     // set a header 
     User.findOne({
         email: email
@@ -166,6 +175,8 @@ exports.postReset = (req, res, next) => {
                         <p>Click this <a href="http://localhost:3000/reset/${token}">link</a> to det a new password.</p>
                     
                     `
+                }).catch(err => {
+                    console.log(err);
                 })
             })
             .catch(err => {
