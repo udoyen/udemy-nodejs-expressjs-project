@@ -6,7 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon app.js",
-    "gulp": "gulp"
+    "gulp": "gulp",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "keywords": [
     "udemy",
@@ -41,6 +43,8 @@
     "nodemailer": "^6.1.1",
     "nodemailer-sendgrid-transport": "^0.2.0",
     "pug": "^2.0.3",
-    "sequelize": "^5.7.5"
-  }
+    "sequelize": "^5.7.5",
+    "snyk": "^1.189.0"
+  },
+  "snyk": true
 }
